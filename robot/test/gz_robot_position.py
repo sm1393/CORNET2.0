@@ -5,7 +5,8 @@ import logging
 import yaml
 from subprocess import check_output, CalledProcessError, STDOUT
 
-logging.basicConfig(filename='gz_robot_position.log', encoding='utf-8', level=logging.DEBUG)
+# logging.basicConfig(filename='gz_robot_position.log', encoding='utf-8', level=logging.DEBUG)
+logging.basicConfig(filename='gz_robot_position.log', level=logging.DEBUG)
 
 
 class GzClient:
@@ -36,7 +37,7 @@ class GzClient:
             output = check_output(cmd, stderr=STDOUT).decode()
             success = True
         except CalledProcessError as e:
-            output = e.output.decode()
+            output = e.output #.decode()
             success = False
         return output, success
 
@@ -52,9 +53,9 @@ class GzClient:
                     logging.debug(resp)
 
                     self.msg[1] = robot
-                    self.msg[6] = resp[0].decode('utf-8')
-                    self.msg[8] = resp[1].decode('utf-8')
-                    self.msg[10] = resp[2].decode('utf-8')
+                    self.msg[6] = resp[0] #.decode('utf-8')
+                    self.msg[8] = resp[1] #.decode('utf-8')
+                    self.msg[10] = resp[2] #.decode('utf-8')
 
                     logging.debug(''.join([str(item) for item in self.msg]))
                     #FIXME the update to the mininet server is pending
@@ -69,7 +70,7 @@ class GzClient:
         s = socket.socket()
         s.connect((self.host, self.port))
         s.send(str(msg).encode('utf-8'))
-        data = s.recv(1024).decode('utf-8')
+        data = s.recv(1024) #.decode('utf-8')
         logging.debug("Recv from Server")
         s.close()
         return data

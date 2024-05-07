@@ -1,2 +1,4 @@
 /venv/
 .idea
+gz_robot_position.log
+robot*-mn-telemetry.txt

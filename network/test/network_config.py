@@ -60,7 +60,7 @@ def topology(args):
         h1 = net.addHost('h1', ip='10.0.0.1/24', cls=Docker, dimage="cornet:focalfoxyNWH", cpu_shares=20)
 
         info("*** Configuring Propagation Model\n")
-        net.setPropagationModel(model="logDistance", exp=6.5)
+        net.setPropagationModel(model="logDistance", exp=20)
         # FIXME add propagation model as well to the config file.
 
         #info('*** Adding switches\n')
@@ -73,7 +73,7 @@ def topology(args):
         net.configureWifiNodes()
 
         if '-p' not in args:
-            net.plotGraph(max_x=100, max_y=100)
+            net.plotGraph(min_x=-10, min_y=-10, max_x=10, max_y=10)
 
         for sta in sta_list:
             sta.cmd('service ssh restart')

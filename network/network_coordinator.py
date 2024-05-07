@@ -38,7 +38,7 @@ def send_one_message(sock, data):
 
 def network_recv_stub(node):
     server_address = '/tmp/' + node +'recv'
-    print server_address
+    print (server_address)
     # Make sure the socket does not already exist
     try:
         os.unlink(server_address)
@@ -55,7 +55,7 @@ def network_recv_stub(node):
             connection, client_address = sock.accept()
             while True:
                 data = recv_one_message(connection)
-                print data
+                print (data)
                 #FIXTIT do something with data
 
         except socket.error:
@@ -68,7 +68,7 @@ def network_recv_stub(node):
 
 def network_send_stub(node):
     server_address = '/tmp/' + node +'send'
-    print server_address
+    print (server_address)
     # Make sure the socket does not already exist
     try:
         os.unlink(server_address)
